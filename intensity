@@ -8,7 +8,7 @@ sum_list = [] #will hold the intensity value for each column
 x = [] #holds values from 0 to width of image
 
 image1 = cv2.imread('C:/Users/cadel/Downloads/propimgcrop.jpg', 0) #reading image
-thresh_img = cv2.adaptiveThreshold(image1, 1, cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,111,2) #binarizing image
+thresh_img = -1*cv2.adaptiveThreshold(image1, 1, cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,111,2) #binarizing image
 plt.imshow(thresh_img,cmap = 'gray')
 
 for i in range(0,len(thresh_img[0])): #number of columns
@@ -17,7 +17,7 @@ for i in range(0,len(thresh_img[0])): #number of columns
     sum_list.append(temp_val) #adds the intensity value of particular column to list
     temp_val = 0 #resets the temporary intensity value
     x.append(i) #adds a value to the x-axis
-peaks, _ = find_peaks(sum_list, prominence = 75) #finds the peaks of the data, can set different cutoffs but a lowball visual works fine
+peaks, _ = find_peaks(sum_list, prominence = 40) #finds the peaks of the data, can set different cutoffs but a lowball visual works fine
 plt.figure() #creates a figure
 plt.ylabel('Intensity') #y-axis label
 plt.xlabel('X') #x-axis label
